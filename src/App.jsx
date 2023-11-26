@@ -1,11 +1,15 @@
-function App() {
+import ContactUs from "./pages/Home/Contact-us/ContactUs";
+import Home from "./pages/Home/Home";
+import Service from "./pages/Home/Service/Service";
+
+const App = () => {
   return (
     <>
-      <div>
-        <h1 className="text-red-500 text-center text-5xl font-bold">hello world</h1>
-      </div>
+      <Home />
+      <Service />
+      <ContactUs />
     </>
   );
-}
+};
 
 export default App;
