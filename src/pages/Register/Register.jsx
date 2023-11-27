@@ -8,6 +8,7 @@ import ToastComponent from "../../components/ToastComponent";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import swal from "sweetalert";
 
 const Register = () => {
   const { HandleCreateUser, updateUserProfile } = useAuth();
@@ -18,6 +19,14 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [districts, setDistricts] = useState([]);
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState(null);
+  const [upazilas, setUpazilas] = useState([]);
+  const [selectedUpazila, setSelectedUpazila] = useState("");
+  const [isRegistered, setIsRegistered] = useState(false);
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -28,14 +37,6 @@ const Register = () => {
     status: "active",
     role: "donor",
   });
-  const [districts, setDistricts] = useState([]);
-  const [selectedDistrict, setSelectedDistrict] = useState("");
-  const [avatar, setAvatar] = useState(null);
-  const [avatarUrl, setAvatarUrl] = useState(null);
-  const [avatarPreview, setAvatarPreview] = useState(null);
-  const [upazilas, setUpazilas] = useState([]);
-  const [selectedUpazila, setSelectedUpazila] = useState("");
-  const [isRegistered, setIsRegistered] = useState(false);
 
   // load districts data
   useEffect(() => {
@@ -70,7 +71,6 @@ const Register = () => {
     }
   };
 
-  
   useEffect(() => {
     if (avatarUrl) {
       const userData = {
@@ -80,7 +80,7 @@ const Register = () => {
       // create user entry in the database
       axiosPublic.post("/users", userData).then((res) => {
         if (res.data.insertedId) {
-          toast.success("User created successfully.");
+          swal("Good job!", "Successfully Registered as a Donor", "success");
           setIsRegistered(false);
           navigate("/login");
         }

@@ -19,7 +19,6 @@ const Login = () => {
 
   // onsubmit call firebase and login user
   const onSubmit = (data) => {
-    console.log(data);
     const { email, password } = data;
     handleLogin(email, password)
       .then((result) => {
