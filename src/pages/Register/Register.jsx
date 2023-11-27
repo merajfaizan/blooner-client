@@ -18,6 +18,16 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    avatarUrl: avatarUrl,
+    bloodGroup: "",
+    district: "",
+    upazila: "",
+    status: "active",
+    role: "donor",
+  });
   const [districts, setDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [avatar, setAvatar] = useState(null);
@@ -25,7 +35,6 @@ const Register = () => {
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [upazilas, setUpazilas] = useState([]);
   const [selectedUpazila, setSelectedUpazila] = useState("");
-  const [passwordsMatch, setPasswordsMatch] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
 
   // load districts data
@@ -61,16 +70,7 @@ const Register = () => {
     }
   };
 
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    avatarUrl: avatarUrl,
-    bloodGroup: "",
-    district: "",
-    upazila: "",
-    status: "active",
-    role: "donor",
-  });
+  
   useEffect(() => {
     if (avatarUrl) {
       const userData = {
@@ -115,7 +115,6 @@ const Register = () => {
     };
     setUserInfo(userData);
     if (password === confirm_password) {
-      setPasswordsMatch(true);
       HandleCreateUser(email, password)
         .then(async (result) => {
           const loggedUser = result.user;
@@ -153,7 +152,6 @@ const Register = () => {
           toast.error(errorMessage[1]);
         });
     } else {
-      setPasswordsMatch(false);
       toast.error("both password not matched");
     }
   };
