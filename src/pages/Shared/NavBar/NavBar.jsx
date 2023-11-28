@@ -4,6 +4,14 @@ import useAuth from "../../../hooks/useAuth";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const navOptions = (
     <>
       <li>
@@ -12,9 +20,22 @@ const NavBar = () => {
       <li>
         <Link to={"/donation-request"}>Donation-Request</Link>
       </li>
-      <li>
-        <Link to={"/dashboard"}>Dashboard</Link>
-      </li>
+      {user?.role === "admin" && (
+        <li>
+          <Link to={"/dashboard/adminHome"}>Dashboard</Link>
+        </li>
+      )}
+      {user?.role === "volunteer" && (
+        <li>
+          <Link to={"/dashboard/userHome"}>Dashboard</Link>
+        </li>
+      )}
+      {user?.role === "donor" && (
+        <li>
+          <Link to={"/dashboard/userHome"}>Dashboard</Link>
+        </li>
+      )}
+
       <li>
         <Link to={"/funding"}>Funding</Link>
       </li>
@@ -49,7 +70,7 @@ const NavBar = () => {
           </div>
 
           <button
-            onClick={logOut}
+            onClick={handleLogOut}
             className="block md:hidden text-lg font-medium bg-[#1a1a1a] text-white px-5 py-2 rounded my-2"
           >
             Logout
@@ -114,7 +135,7 @@ const NavBar = () => {
           </>
         ) : (
           <button
-            onClick={logOut}
+            onClick={handleLogOut}
             className="hidden md:block text-lg font-medium bg-[#1a1a1a] text-white px-5 py-2 rounded my-2"
           >
             Logout

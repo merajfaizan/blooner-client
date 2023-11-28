@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       // set user from mongodb
-      axiosPublic.get(`/users/${currentUser.email}`).then((res) => {
+      axiosPublic.get(`/users/${currentUser?.email}`).then((res) => {
         setUser(res.data.user);
       });
 
@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
           }
         });
       } else {
-        //  remove token (if token stored in the client side: Local storage, caching, in memory)
+        //  remove token stored in the client side: Local storage
         localStorage.removeItem("access-token");
         setLoading(false);
       }
