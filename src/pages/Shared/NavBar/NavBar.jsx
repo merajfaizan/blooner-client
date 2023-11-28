@@ -4,7 +4,6 @@ import useAuth from "../../../hooks/useAuth";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
-
   const navOptions = (
     <>
       <li>
@@ -38,12 +37,24 @@ const NavBar = () => {
           </Link>
         </>
       ) : (
-        <button
-          onClick={logOut}
-          className="block md:hidden text-lg font-medium bg-[#1a1a1a] text-white px-5 py-2 rounded my-2"
-        >
-          Logout
-        </button>
+        <>
+          <div className="flex items-center gap-2">
+            <div>
+              <img className="w-12 h-12 rounded-full" src={user?.avatarUrl} />
+            </div>
+            <div>
+              <h4>{user?.name}</h4>
+              <h4>Role: {user?.role}</h4>
+            </div>
+          </div>
+
+          <button
+            onClick={logOut}
+            className="block md:hidden text-lg font-medium bg-[#1a1a1a] text-white px-5 py-2 rounded my-2"
+          >
+            Logout
+          </button>
+        </>
       )}
     </>
   );
