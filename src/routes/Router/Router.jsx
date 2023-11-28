@@ -8,6 +8,10 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import UserHome from "../../pages/Dashboard/User-Home/UserHome";
 import AdminHome from "../../pages/Dashboard/Admin-Home/AdminHome";
 import Profile from "../../pages/Dashboard/Profile/Profile";
+import AllUsers from "../../pages/Dashboard/All-Users/AllUsers";
+import ContentManagement from "../../pages/Dashboard/ContentManagement/ContentManagement";
+import AddBlog from "../../pages/Dashboard/AddBlog/AddBlog";
+import DonationRequest from "../../pages/Dashboard/CreateDonationRequest/DonationRequest";
 
 const router = createBrowserRouter([
   {
@@ -45,10 +49,26 @@ const router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
+      {
+        path: "create-donation-request",
+        element: <DonationRequest />,
+      },
       // admin user route
       {
         path: "adminHome",
         element: <AdminHome />,
+      },
+      {
+        path: "all-users",
+        element: <AllUsers />,
+      },
+      {
+        path: "content-management",
+        element: <ContentManagement />,
+      },
+      {
+        path: "content-management/add-blog",
+        element: <AddBlog />,
       },
       // admin and volunteer shared route
       {

@@ -24,7 +24,7 @@ const Dashboard = () => {
           <Outlet />
         </div>
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side z-50">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
@@ -43,12 +43,37 @@ const Dashboard = () => {
                   : "/dashboard/userHome"
               }
             >
-              Home
+              Dashboard
             </Link>
           </li>
           <li>
             <Link className="text-lg" to={"/dashboard/profile"}>
               Profile
+            </Link>
+          </li>
+          {user.role === "admin" && (
+            <>
+              <li>
+                <Link className="text-lg" to={"/dashboard/all-users"}>
+                  All users
+                </Link>
+              </li>
+              <li>
+                <Link className="text-lg" to={"/dashboard/content-management"}>
+                  content-management
+                </Link>
+              </li>
+            </>
+          )}
+
+          <li>
+            <Link className="text-lg" to={"/dashboard/create-donation-request"}>
+              create-donation-request
+            </Link>
+          </li>
+          <li>
+            <Link className="text-lg" to={"/"}>
+              Back To Home
             </Link>
           </li>
         </ul>

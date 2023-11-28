@@ -21,11 +21,11 @@ const Register = () => {
   } = useForm();
   const [districts, setDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [upazilas, setUpazilas] = useState([]);
+  const [selectedUpazila, setSelectedUpazila] = useState("");
   const [avatar, setAvatar] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState(null);
-  const [upazilas, setUpazilas] = useState([]);
-  const [selectedUpazila, setSelectedUpazila] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -139,6 +139,7 @@ const Register = () => {
                 handleUpdateUserProfile(name, data.data.url);
               } else {
                 console.error("Image upload failed:", response.statusText);
+                setIsRegistered(false);
               }
             } catch (error) {
               console.error("Error during image upload:", error);
