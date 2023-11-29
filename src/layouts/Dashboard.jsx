@@ -2,6 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import { MdMenu } from "react-icons/md";
 import { BiDonateBlood } from "react-icons/bi";
 import { MdOutlineHome } from "react-icons/md";
+import { CiHospital1 } from "react-icons/ci";
 import { RxDashboard } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import { FaBloggerB } from "react-icons/fa";
@@ -69,17 +70,30 @@ const Dashboard = () => {
                   <FaBloggerB /> content-management
                 </Link>
               </li>
+              <li>
+                <Link
+                  className="text-lg"
+                  to={"/dashboard/all-donation-requests"}
+                >
+                  <FaBloggerB /> All Donation Requests
+                </Link>
+              </li>
             </>
           )}
 
           <li>
             <Link className="text-lg" to={"/dashboard/create-donation-request"}>
-            <BiDonateBlood /> create-donation-request
+              <BiDonateBlood /> create-donation-request
+            </Link>
+          </li>
+          <li>
+            <Link className="text-lg" to={"/dashboard/my-donation-requests"}>
+              <CiHospital1 /> My Donation Request
             </Link>
           </li>
           <li>
             <Link className="text-lg" to={"/"}>
-            <MdOutlineHome /> Back To Home
+              <MdOutlineHome /> Back To Home
             </Link>
           </li>
         </ul>

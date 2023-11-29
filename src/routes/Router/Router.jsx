@@ -17,6 +17,8 @@ import DonationRequestPublic from "../../pages/DonationRequestPublic/DonationReq
 import DonationRequestDetail from "../../pages/DonationRequestDetail/DonationRequestDetail";
 import Blog from "../../pages/Blogs/Blog";
 import BlogDetails from "../../pages/Blogs/BlogDetails";
+import AllDonationRequest from "../../pages/Dashboard/AllDonationRequest/AllDonationRequest";
+import MyDonationRequest from "../../pages/Dashboard/MyDonationRequest/MyDonationRequest";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +84,10 @@ const router = createBrowserRouter([
         path: "create-donation-request",
         element: <DonationRequest />,
       },
+      {
+        path: "my-donation-requests",
+        element: <MyDonationRequest />,
+      },
       // admin user route
       {
         path: "adminHome",
@@ -90,6 +96,10 @@ const router = createBrowserRouter([
       {
         path: "all-users",
         element: <AllUsers />,
+      },
+      {
+        path: "all-donation-requests",
+        element: <AllDonationRequest />,
       },
       {
         path: "content-management",
