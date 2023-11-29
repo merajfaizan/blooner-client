@@ -40,7 +40,7 @@ const NavBar = () => {
         <Link to={"/funding"}>Funding</Link>
       </li>
       <li>
-        <Link to={"/blog"}>Blog</Link>
+        <Link to={"/blogs"}>Blog</Link>
       </li>
       {!user ? (
         <>

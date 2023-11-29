@@ -60,7 +60,7 @@ const ContentManagement = () => {
             );
           })
         ) : (
-          <h1 className="text-3xl font-semibold">No blog Published yet</h1>
+          <h1 className="text-3xl font-semibold">No blogs</h1>
         )}
       </div>
     </div>
