@@ -9,9 +9,13 @@ const AdminHome = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [allUsers, setAllUsers] = useState([]);
+  const [donationRequest, setDonationRequest] = useState([]);
 
   useEffect(() => {
     axiosSecure.get("/users").then((res) => setAllUsers(res.data));
+    axiosSecure
+      .get("/donationRequests")
+      .then((res) => setDonationRequest(res.data));
   }, [axiosSecure]);
   return (
     <div>
@@ -25,14 +29,16 @@ const AdminHome = () => {
             Total Users: {allUsers.length}
           </h1>
         </div>
-        <div className="flex flex-col justify-center items-center py-3 bg-yellow-200 rounded-lg">
-          <RiRefund2Line className="text-5xl" />{" "}
-          <h1 className="text-lg font-medium">Total funding&apos;s: 10</h1>
-        </div>
         <div className="flex flex-col justify-center items-center py-3 bg-red-200 rounded-lg">
           <BiSolidDonateBlood className="text-5xl" />{" "}
           <h1 className="text-lg font-medium text-center">
-            Total Blood Donation <br /> Requests: 10
+            Total Blood Donation <br /> Requests: {donationRequest.length}
+          </h1>
+        </div>
+        <div className="flex flex-col justify-center items-center py-3 bg-yellow-200 rounded-lg">
+          <RiRefund2Line className="text-5xl" />{" "}
+          <h1 className="text-lg font-medium">
+            Total funding&apos;s: <span>1000</span>$
           </h1>
         </div>
       </div>

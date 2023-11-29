@@ -12,6 +12,9 @@ import AllUsers from "../../pages/Dashboard/All-Users/AllUsers";
 import ContentManagement from "../../pages/Dashboard/ContentManagement/ContentManagement";
 import AddBlog from "../../pages/Dashboard/AddBlog/AddBlog";
 import DonationRequest from "../../pages/Dashboard/CreateDonationRequest/DonationRequest";
+import SearchDonor from "../../pages/Search-donor/SearchDonor";
+import DonationRequestPublic from "../../pages/DonationRequestPublic/DonationRequestPublic";
+import DonationRequestDetail from "../../pages/DonationRequestDetail/DonationRequestDetail";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +24,22 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App />,
+      },
+      {
+        path: "search-donors",
+        element: <SearchDonor />,
+      },
+      {
+        path: "donation-request",
+        element: <DonationRequestPublic />,
+      },
+      {
+        path: "donation-request/:id",
+        element: (
+          <PrivateRoute>
+            <DonationRequestDetail />
+          </PrivateRoute>
+        ),
       },
       {
         path: "login",

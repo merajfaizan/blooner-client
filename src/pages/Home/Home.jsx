@@ -23,7 +23,7 @@ const Home = () => {
               Join as a Donor
             </Link>
             <Link
-              to={"/search"}
+              to={"/search-donors"}
               className="w-full text-lg font-bold bg-white text-black px-5 py-2 rounded"
             >
               Search Donors
