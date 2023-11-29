@@ -12,7 +12,7 @@ const AdminHome = () => {
   const [donationRequest, setDonationRequest] = useState([]);
 
   useEffect(() => {
-    axiosSecure.get("/users").then((res) => setAllUsers(res.data));
+    axiosSecure.get("/users").then((res) => setAllUsers(res.data.totalCount));
     axiosSecure
       .get("/donationRequests")
       .then((res) => setDonationRequest(res.data));
@@ -26,7 +26,7 @@ const AdminHome = () => {
         <div className="flex flex-col justify-center items-center py-3 bg-green-200 rounded-lg">
           <FaUsers className="text-5xl" />{" "}
           <h1 className="text-lg font-medium">
-            Total Users: {allUsers.length}
+            Total Users: {allUsers}
           </h1>
         </div>
         <div className="flex flex-col justify-center items-center py-3 bg-red-200 rounded-lg">

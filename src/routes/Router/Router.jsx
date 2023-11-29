@@ -36,20 +36,20 @@ const router = createBrowserRouter([
         element: <DonationRequestPublic />,
       },
       {
-        path: "blogs",
-        element: <Blog />,
-      },
-      {
-        path: "blogs/:id",
-        element: <BlogDetails />,
-      },
-      {
         path: "donation-request/:id",
         element: (
           <PrivateRoute>
             <DonationRequestDetail />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "blogs",
+        element: <Blog />,
+      },
+      {
+        path: "blogs/:id",
+        element: <BlogDetails />,
       },
       {
         path: "login",

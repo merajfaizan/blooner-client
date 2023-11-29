@@ -27,7 +27,7 @@ const NavBar = () => {
       )}
       {user?.role === "volunteer" && (
         <li>
-          <Link to={"/dashboard/userHome"}>Dashboard</Link>
+          <Link to={"/dashboard/adminHome"}>Dashboard</Link>
         </li>
       )}
       {user?.role === "donor" && (
@@ -37,11 +37,9 @@ const NavBar = () => {
       )}
 
       <li>
-        <Link to={"/funding"}>Funding</Link>
+        <Link to={"/blogs"}>Blogs</Link>
       </li>
-      <li>
-        <Link to={"/blogs"}>Blog</Link>
-      </li>
+
       {!user ? (
         <>
           <Link

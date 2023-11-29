@@ -1,5 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
 import { MdMenu } from "react-icons/md";
+import { BiDonateBlood } from "react-icons/bi";
+import { MdOutlineHome } from "react-icons/md";
+import { RxDashboard } from "react-icons/rx";
+import { CgProfile } from "react-icons/cg";
+import { FaBloggerB } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
 import logo from "../assets/health-care.png";
 import useAuth from "../hooks/useAuth";
 
@@ -24,7 +30,7 @@ const Dashboard = () => {
           <Outlet />
         </div>
       </div>
-      <div className="drawer-side z-50">
+      <div className="drawer-side">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
@@ -43,24 +49,24 @@ const Dashboard = () => {
                   : "/dashboard/userHome"
               }
             >
-              Dashboard
+              <RxDashboard /> Dashboard
             </Link>
           </li>
           <li>
             <Link className="text-lg" to={"/dashboard/profile"}>
-              Profile
+              <CgProfile /> Profile
             </Link>
           </li>
           {user.role === "admin" && (
             <>
               <li>
                 <Link className="text-lg" to={"/dashboard/all-users"}>
-                  All users
+                  <FaUsers /> All users
                 </Link>
               </li>
               <li>
                 <Link className="text-lg" to={"/dashboard/content-management"}>
-                  content-management
+                  <FaBloggerB /> content-management
                 </Link>
               </li>
             </>
@@ -68,12 +74,12 @@ const Dashboard = () => {
 
           <li>
             <Link className="text-lg" to={"/dashboard/create-donation-request"}>
-              create-donation-request
+            <BiDonateBlood /> create-donation-request
             </Link>
           </li>
           <li>
             <Link className="text-lg" to={"/"}>
-              Back To Home
+            <MdOutlineHome /> Back To Home
             </Link>
           </li>
         </ul>
