@@ -19,6 +19,7 @@ import Blog from "../../pages/Blogs/Blog";
 import BlogDetails from "../../pages/Blogs/BlogDetails";
 import AllDonationRequest from "../../pages/Dashboard/AllDonationRequest/AllDonationRequest";
 import MyDonationRequest from "../../pages/Dashboard/MyDonationRequest/MyDonationRequest";
+import UpdateDonationRequest from "../../pages/Dashboard/UpdateDonationRequest/UpdateDonationRequest";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,14 @@ const router = createBrowserRouter([
       {
         path: "my-donation-requests",
         element: <MyDonationRequest />,
+      },
+      {
+        path: "my-donation-requests/:id",
+        element: <DonationRequestDetail />,
+      },
+      {
+        path: "my-donation-requests/update/:id",
+        element: <UpdateDonationRequest />,
       },
       // admin user route
       {

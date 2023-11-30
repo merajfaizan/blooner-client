@@ -8,18 +8,20 @@ const UserHome = () => {
   const { user } = useAuth();
   const [donationRequests, setDonationRequests] = useState([]);
   const axiosSecure = useAxiosSecure();
+  const [updateUi, setUpdateUi] = useState(false);
 
   useEffect(() => {
     // Make API call to retrieve donation requests for the authenticated user
     axiosSecure
       .get("/donation-requests?limit=3")
       .then((res) => {
-        setDonationRequests(res.data);
+        setDonationRequests(res.data.donationRequests);
+        setUpdateUi(false);
       })
       .catch((error) => {
         console.error("Error fetching donation requests:", error);
       });
-  }, [axiosSecure]);
+  }, [axiosSecure, updateUi]);
 
   return (
     <div>
@@ -28,15 +30,45 @@ const UserHome = () => {
       </p>
       <div className="mt-4">
         {donationRequests.length > 0 ? (
-          <>
-            <DonationTable donationRequests={donationRequests} />
+          <div className="overflow-x-auto mt-10">
+            <h1 className="text-3xl font-semibold">Your Donation Requests: </h1>
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>Count:</th>
+                  <th>Recipient Name</th>
+                  <th>Recipient Location</th>
+                  <th>Donation Date</th>
+                  <th>Donation Time</th>
+                  <th>Donation Status</th>
+                  <th>Donor Information</th>
+                  <th>Action</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                  <th>View Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {donationRequests?.map((request, index) => {
+                  return (
+                    <DonationTable
+                      key={request._id}
+                      index={index}
+                      requestData={request}
+                      setUpdateUi={setUpdateUi}
+                    />
+                  );
+                })}
+              </tbody>
+            </table>
             <Link
               className="btn bg-[#1a1a1a] text-white mt-5"
               to={"/dashboard/my-donation-requests"}
             >
               View All
             </Link>
-          </>
+          </div>
         ) : (
           <div className="w-full min-h-[70vh] flex flex-col justify-center items-center">
             <h1 className="text-center text-lg font-medium">

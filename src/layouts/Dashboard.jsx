@@ -75,7 +75,7 @@ const Dashboard = () => {
                   className="text-lg"
                   to={"/dashboard/all-donation-requests"}
                 >
-                  <FaBloggerB /> All Donation Requests
+                  <CiHospital1 /> All Donation Requests
                 </Link>
               </li>
             </>
@@ -86,11 +86,13 @@ const Dashboard = () => {
               <BiDonateBlood /> create-donation-request
             </Link>
           </li>
-          <li>
-            <Link className="text-lg" to={"/dashboard/my-donation-requests"}>
-              <CiHospital1 /> My Donation Request
-            </Link>
-          </li>
+          {user.role !== "admin" && user.role !== "volunteer" && (
+            <li>
+              <Link className="text-lg" to={"/dashboard/my-donation-requests"}>
+                <CiHospital1 /> My Donation Request
+              </Link>
+            </li>
+          )}
           <li>
             <Link className="text-lg" to={"/"}>
               <MdOutlineHome /> Back To Home

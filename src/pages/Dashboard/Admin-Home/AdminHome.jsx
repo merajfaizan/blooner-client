@@ -14,7 +14,7 @@ const AdminHome = () => {
   useEffect(() => {
     axiosSecure.get("/users").then((res) => setAllUsers(res.data.totalCount));
     axiosSecure
-      .get("/donationRequests")
+      .get("/admin/donationRequests")
       .then((res) => setDonationRequest(res.data));
   }, [axiosSecure]);
   return (
