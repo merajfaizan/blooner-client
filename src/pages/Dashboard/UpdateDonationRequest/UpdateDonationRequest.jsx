@@ -80,7 +80,7 @@ const UpdateDonationRequest = () => {
             "Your donation request has been updated.",
             "success"
           );
-          navigate("/dashboard/my-donation-requests");
+          navigate("/dashboard/all-donation-requests");
         }
       })
       .catch((error) => {
@@ -224,7 +224,7 @@ const UpdateDonationRequest = () => {
           />
         </div>
         <button className="btn text-white bg-[#1a1a1a]" type="submit">
-          Request Blood Donation
+          Update Blood Donation Request
         </button>
       </form>
       <ToastComponent />

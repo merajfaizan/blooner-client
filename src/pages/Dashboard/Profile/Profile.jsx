@@ -10,7 +10,7 @@ import ToastComponent from "../../../components/ToastComponent";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Profile = () => {
-  const { user, updateUserProfile } = useAuth();
+  const { user, updateUserProfile, setRefetch } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const [districts, setDistricts] = useState([]);
@@ -66,6 +66,7 @@ const Profile = () => {
       axiosSecure.put(`/users`, newData).then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("information Updated successfully");
+          setRefetch(true);
         }
         setIsUpdating(false);
       });
@@ -73,12 +74,6 @@ const Profile = () => {
       console.log(errors);
       setIsUpdating(false);
     }
-  };
-
-  const handleReset = () => {
-    setSelectedDistrict(user.district);
-    setSelectedUpazila(user.upazila);
-    reset();
   };
 
   return (
@@ -188,14 +183,6 @@ const Profile = () => {
                 </button>
               </div>
             </form>
-            <div className="px-8">
-              <button
-                className="bg-[#fafafa] border border-black mb-5 text-black py-2 w-full rounded-lg cursor-pointer"
-                onClick={handleReset}
-              >
-                Reset
-              </button>
-            </div>
           </div>
         </div>
         <ToastComponent />

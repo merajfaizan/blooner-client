@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import banner from "../../assets/blood_banner.jpg";
+import useAuth from "../../hooks/useAuth";
 
 const Home = () => {
+  const { user } = useAuth();
   return (
     <div
       className="hero min-h-screen rounded"
@@ -16,12 +18,14 @@ const Home = () => {
             Community.
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-5">
-            <Link
-              to={"/register"}
-              className="w-full text-lg font-bold bg-white text-black px-5 py-2 rounded"
-            >
-              Join as a Donor
-            </Link>
+            {!user?.email && (
+              <Link
+                to={"/register"}
+                className="w-full text-lg font-bold bg-white text-black px-5 py-2 rounded"
+              >
+                Join as a Donor
+              </Link>
+            )}
             <Link
               to={"/search-donors"}
               className="w-full text-lg font-bold bg-white text-black px-5 py-2 rounded"

@@ -9,7 +9,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
 const SearchDonorForm = ({ setdonor }) => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const axiosPublic = useAxiosPublic();
   const [districts, setDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -41,13 +41,22 @@ const SearchDonorForm = ({ setdonor }) => {
 
   const onSubmit = (data) => {
     try {
-      axiosPublic.post("find-donors", data).then((res) => {
-        setdonor(res.data);
-      });
+      const { bloodGroup = '', district = '', upazila = '' } = data;
+  
+      axiosPublic
+        .get("/find-donors", {
+          params: {
+            bloodGroup,
+            district,
+            upazila,
+          },
+        })
+        .then((res) => {
+          setdonor(res.data);
+        });
     } catch (error) {
       console.log(error);
     }
-    // Handle form submission logic here
   };
   return (
     <form
@@ -97,7 +106,7 @@ const SearchDonorForm = ({ setdonor }) => {
           className="form-control w-full border p-3 rounded-lg"
           id="district"
           value={selectedDistrict}
-          {...register("district", { required: true })}
+          {...register("district")}
           onChange={(e) => setSelectedDistrict(e.target.value)}
         >
           <option value="">Select District</option>
@@ -117,7 +126,7 @@ const SearchDonorForm = ({ setdonor }) => {
           className="form-control w-full border p-3 rounded-lg"
           id="upazila"
           value={selectedUpazila}
-          {...register("upazila", { required: true })}
+          {...register("upazila")}
           onChange={(e) => setSelectedUpazila(e.target.value)}
         >
           <option value="">Select Upazila</option>

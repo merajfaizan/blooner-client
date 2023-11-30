@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
+  const [refetch, setRefetch] = useState(false);
 
   //   create user with email and password
   const HandleCreateUser = (email, password) => {
@@ -57,22 +58,25 @@ export const AuthProvider = ({ children }) => {
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
             setLoading(false);
+            setRefetch(false);
           }
         });
       } else {
         //  remove token stored in the client side: Local storage
         localStorage.removeItem("access-token");
         setLoading(false);
+        setRefetch(false);
       }
     });
     return () => {
       unsubscribe();
     };
-  }, [axiosPublic, user?.email]);
+  }, [axiosPublic, user?.email, refetch]);
 
   const authInfo = {
     user,
     loading,
+    setRefetch,
     HandleCreateUser,
     updateUserProfile,
     handleLogin,

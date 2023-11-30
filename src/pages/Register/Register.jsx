@@ -154,6 +154,7 @@ const Register = () => {
         });
     } else {
       toast.error("both password not matched");
+      setIsRegistered(false);
     }
   };
 
@@ -192,7 +193,7 @@ const Register = () => {
                   className="form-control w-full input input-bordered"
                   id="name"
                   placeholder="Enter your name"
-                  {...register("name", { required: true })}
+                  {...register("name")}
                 />
                 {errors.name && <span className="error">Name is required</span>}
               </div>
