@@ -12,7 +12,6 @@ const UserHome = () => {
 
   useEffect(() => {
     // Make API call to retrieve donation requests for the authenticated user
-    setRefetch(true)
     axiosSecure
       .get("/donation-requests?limit=3")
       .then((res) => {

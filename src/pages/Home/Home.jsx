@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import banner from "../../assets/blood_banner.jpg";
 import useAuth from "../../hooks/useAuth";
 
 const Home = () => {
@@ -7,7 +6,9 @@ const Home = () => {
   return (
     <div
       className="hero min-h-screen rounded"
-      style={{ backgroundImage: `url(${banner})` }}
+      style={{
+        backgroundImage: `url("https://i.ibb.co/rdKdBMN/blood-banner.jpg")`,
+      }}
     >
       <div className="hero-overlay bg-opacity-60 rounded"></div>
       <div className="hero-content text-center text-neutral-content">

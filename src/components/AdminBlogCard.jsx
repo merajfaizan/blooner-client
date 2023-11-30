@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import ToastComponent from "./ToastComponent";
 import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 
 const AdminBlogCard = ({ blog, setReFetch }) => {
+  const {user} = useAuth()
   const axiosSecure = useAxiosSecure();
 
   const handleAction = (action) => {
+    if(user.role !== "admin"){
+      return toast.warning("You don't have permission to change blog status")
+    }
     axiosSecure
       .put(`/blogs/${blog._id}`, { action })
       .then((res) => {
@@ -24,6 +29,9 @@ const AdminBlogCard = ({ blog, setReFetch }) => {
   };
 
   const handleDelete = () => {
+    if(user.role !== "admin"){
+      return toast.warning("You don't have permission to delete this blog")
+    }
     axiosSecure
       .delete(`/blogs/${blog._id}`)
       .then((res) => {

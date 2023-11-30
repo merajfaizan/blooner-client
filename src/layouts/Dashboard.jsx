@@ -60,13 +60,17 @@ const Dashboard = () => {
           </li>
           {user.role !== "donor" && (
             <>
-              {user.role === "admin" && (
-                <li>
-                  <Link className="text-lg" to={"/dashboard/all-users"}>
-                    <FaUsers /> All users
-                  </Link>
-                </li>
-              )}
+              <li>
+                <Link
+                  className={`${
+                    user.role === "admin" ? "block" : "hidden"
+                  } text-lg`}
+                  to={"/dashboard/all-users"}
+                >
+                  <FaUsers /> All users
+                </Link>
+              </li>
+
               <li>
                 <Link className="text-lg" to={"/dashboard/content-management"}>
                   <FaBloggerB /> content-management
