@@ -5,13 +5,14 @@ import DonationTable from "../../../components/DonationTable";
 import { Link } from "react-router-dom";
 
 const UserHome = () => {
-  const { user } = useAuth();
+  const { user, setRefetch } = useAuth();
   const [donationRequests, setDonationRequests] = useState([]);
   const axiosSecure = useAxiosSecure();
   const [updateUi, setUpdateUi] = useState(false);
 
   useEffect(() => {
     // Make API call to retrieve donation requests for the authenticated user
+    setRefetch(true)
     axiosSecure
       .get("/donation-requests?limit=3")
       .then((res) => {
@@ -21,7 +22,7 @@ const UserHome = () => {
       .catch((error) => {
         console.error("Error fetching donation requests:", error);
       });
-  }, [axiosSecure, updateUi]);
+  }, [axiosSecure, setRefetch, updateUi]);
 
   return (
     <div>
@@ -66,7 +67,7 @@ const UserHome = () => {
               className="btn bg-[#1a1a1a] text-white mt-5"
               to={"/dashboard/my-donation-requests"}
             >
-              View All
+              View All My Requests
             </Link>
           </div>
         ) : (

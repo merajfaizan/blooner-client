@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import districtsData from "../../../assets/districts.json";
 import upazilasData from "../../../assets/upazilas.json";
@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 const UpdateDonationRequest = () => {
   const { user } = useAuth();
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const axiosSecure = useAxiosSecure();
   const {
@@ -80,7 +79,6 @@ const UpdateDonationRequest = () => {
             "Your donation request has been updated.",
             "success"
           );
-          navigate("/dashboard/all-donation-requests");
         }
       })
       .catch((error) => {

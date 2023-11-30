@@ -58,13 +58,15 @@ const Dashboard = () => {
               <CgProfile /> Profile
             </Link>
           </li>
-          {user.role === "admin" && (
+          {user.role !== "donor" && (
             <>
-              <li>
-                <Link className="text-lg" to={"/dashboard/all-users"}>
-                  <FaUsers /> All users
-                </Link>
-              </li>
+              {user.role === "admin" && (
+                <li>
+                  <Link className="text-lg" to={"/dashboard/all-users"}>
+                    <FaUsers /> All users
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link className="text-lg" to={"/dashboard/content-management"}>
                   <FaBloggerB /> content-management

@@ -45,7 +45,7 @@ const DonationRequest = () => {
   }, [selectedDistrict]);
 
   const onSubmit = (data) => {
-    if (user.status === "block") {
+    if (user.status === "blocked") {
       return toast.error("You are not permitted for Donation Request");
     }
     const formData = { ...data, status: "pending" };

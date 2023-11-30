@@ -6,8 +6,10 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 
 const DonationTable = ({ index, requestData, setUpdateUi }) => {
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const handleStatusChange = async (newStatus) => {
@@ -88,39 +90,43 @@ const DonationTable = ({ index, requestData, setUpdateUi }) => {
           </div>
         )}
       </th>
-      <th>
-        {requestData?.status !== "done" &&
-          requestData?.status !== "canceled" && (
-            <Link
-              to={`/dashboard/my-donation-requests/update/${requestData._id}`}
-              className="btn bg-yellow-600 text-white"
+      {user?.role !== "volunteer" && (
+        <>
+          <th>
+            {requestData?.status !== "done" &&
+              requestData?.status !== "canceled" && (
+                <Link
+                  to={`/dashboard/my-donation-requests/update/${requestData._id}`}
+                  className="btn bg-yellow-600 text-white"
+                >
+                  <span className="flex gap-1">
+                    <FaEdit /> Edit
+                  </span>
+                </Link>
+              )}
+          </th>
+          <th>
+            <button
+              onClick={handleDeleteRequest}
+              className="btn bg-red-600 text-white"
             >
               <span className="flex gap-1">
-                <FaEdit /> Edit
+                <MdOutlineDeleteOutline /> Delete
+              </span>
+            </button>
+          </th>
+          <th>
+            <Link
+              to={`/dashboard/my-donation-requests/${requestData._id}`}
+              className="btn bg-blue-600 text-white"
+            >
+              <span className="flex gap-1">
+                <FaRegEye /> View
               </span>
             </Link>
-          )}
-      </th>
-      <th>
-        <button
-          onClick={handleDeleteRequest}
-          className="btn bg-red-600 text-white"
-        >
-          <span className="flex gap-1">
-            <MdOutlineDeleteOutline /> Delete
-          </span>
-        </button>
-      </th>
-      <th>
-        <Link
-          to={`/dashboard/my-donation-requests/${requestData._id}`}
-          className="btn bg-blue-600 text-white"
-        >
-          <span className="flex gap-1">
-            <FaRegEye /> View
-          </span>
-        </Link>
-      </th>
+          </th>
+        </>
+      )}
     </tr>
   );
 };

@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import DonationTable from "../../../components/DonationTable";
 import { ToastContainer } from "react-toastify";
+import useAuth from "../../../hooks/useAuth";
 
 const AllDonationRequest = () => {
+  const { user } = useAuth();
   const [donationRequests, setDonationRequests] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [page, setPage] = useState(1);
@@ -109,9 +111,13 @@ const AllDonationRequest = () => {
             </th>
             <th>Donor Information</th>
             <th>Action</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            <th>View Details</th>
+            {user?.role !== "volunteer" && (
+              <>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>View Details</th>
+              </>
+            )}
           </tr>
         </thead>
         <tbody>
